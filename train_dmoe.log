@@ -1,0 +1,637 @@
+using world size: 1, data-parallel-size: 1, tensor-model-parallel size: 1, pipeline-model-parallel size: 1 
+accumulate and all-reduce gradients in fp32 for bfloat16 data type.
+using torch.bfloat16 for parameters ...
+------------------------ arguments ------------------------
+  accumulate_allreduce_grads_in_fp32 .............. True
+  adam_beta1 ...................................... 0.9
+  adam_beta2 ...................................... 0.999
+  adam_eps ........................................ 1e-08
+  adlr_autoresume ................................. False
+  adlr_autoresume_interval ........................ 1000
+  apply_query_key_layer_scaling ................... True
+  apply_residual_connection_post_layernorm ........ False
+  async_tensor_model_parallel_allreduce ........... False
+  attention_dropout ............................... 0.1
+  attention_softmax_in_fp32 ....................... False
+  barrier_with_L1_time ............................ True
+  bert_binary_head ................................ True
+  bert_load ....................................... None
+  bf16 ............................................ True
+  bias_dropout_fusion ............................. True
+  bias_gelu_fusion ................................ True
+  biencoder_projection_dim ........................ 0
+  biencoder_shared_query_context_model ............ False
+  block_data_path ................................. None
+  classes_fraction ................................ 1.0
+  clip_grad ....................................... 1.0
+  consumed_train_samples .......................... 0
+  consumed_valid_samples .......................... 0
+  data_impl ....................................... infer
+  data_parallel_random_init ....................... False
+  data_parallel_size .............................. 1
+  data_path ....................................... ['1.0', '/mount/megablocks/my-dataset_text_document']
+  data_per_class_fraction ......................... 1.0
+  data_sharding ................................... True
+  dataloader_type ................................. single
+  DDP_impl ........................................ local
+  decoder_num_layers .............................. None
+  decoder_seq_length .............................. None
+  dino_bottleneck_size ............................ 256
+  dino_freeze_last_layer .......................... 1
+  dino_head_hidden_size ........................... 2048
+  dino_local_crops_number ......................... 10
+  dino_local_img_size ............................. 96
+  dino_norm_last_layer ............................ False
+  dino_teacher_temp ............................... 0.07
+  dino_warmup_teacher_temp ........................ 0.04
+  dino_warmup_teacher_temp_epochs ................. 30
+  distribute_saved_activations .................... False
+  distributed_backend ............................. nccl
+  embedding_path .................................. None
+  empty_unused_memory_level ....................... 0
+  encoder_num_layers .............................. 2
+  encoder_seq_length .............................. 256
+  end_weight_decay ................................ 0.01
+  eod_mask_loss ................................... False
+  eval_interval ................................... 1000
+  eval_iters ...................................... 100
+  evidence_data_path .............................. None
+  exit_duration_in_mins ........................... None
+  exit_interval ................................... None
+  exit_signal_handler ............................. False
+  ffn_hidden_size ................................. 2048
+  finetune ........................................ False
+  fp16 ............................................ False
+  fp16_lm_cross_entropy ........................... False
+  fp32_residual_connection ........................ False
+  fp8_amax_compute_algo ........................... most_recent
+  fp8_amax_history_len ............................ 1
+  fp8_e4m3 ........................................ False
+  fp8_hybrid ...................................... False
+  fp8_interval .................................... 1
+  fp8_margin ...................................... 0
+  fp8_wgrad ....................................... True
+  global_batch_size ............................... 512
+  gradient_accumulation_fusion .................... True
+  head_lr_mult .................................... 1.0
+  hidden_dropout .................................. 0.1
+  hidden_size ..................................... 512
+  hysteresis ...................................... 2
+  ict_head_size ................................... None
+  ict_load ........................................ None
+  img_h ........................................... 224
+  img_w ........................................... 224
+  indexer_batch_size .............................. 128
+  indexer_log_interval ............................ 1000
+  inference_batch_times_seqlen_threshold .......... 512
+  init_method_std ................................. 0.01
+  init_method_xavier_uniform ...................... False
+  initial_loss_scale .............................. 4294967296
+  iter_per_epoch .................................. 1250
+  kv_channels ..................................... 64
+  layernorm_epsilon ............................... 1e-05
+  lazy_mpu_init ................................... None
+  load ............................................ None
+  local_rank ...................................... None
+  log_batch_size_to_tensorboard ................... False
+  log_interval .................................... 100
+  log_learning_rate_to_tensorboard ................ True
+  log_loss_scale_to_tensorboard ................... True
+  log_memory_to_tensorboard ....................... False
+  log_num_zeros_in_grad ........................... False
+  log_params_norm ................................. False
+  log_timers_to_tensorboard ....................... False
+  log_validation_ppl_to_tensorboard ............... False
+  log_world_size_to_tensorboard ................... False
+  loss_scale ...................................... None
+  loss_scale_window ............................... 1000
+  lr .............................................. 0.0006
+  lr_decay_iters .................................. 20000
+  lr_decay_samples ................................ None
+  lr_decay_style .................................. cosine
+  lr_warmup_fraction .............................. 0.01
+  lr_warmup_iters ................................. 0
+  lr_warmup_samples ............................... 0
+  make_vocab_size_divisible_by .................... 1024
+  mask_factor ..................................... 1.0
+  mask_prob ....................................... 0.15
+  mask_type ....................................... random
+  masked_softmax_fusion ........................... True
+  max_position_embeddings ......................... 1024
+  max_tokens_to_oom ............................... 12000
+  merge_file ...................................... /mount/gpt2-merges.txt
+  micro_batch_size ................................ 64
+  min_loss_scale .................................. 1.0
+  min_lr .......................................... 6e-05
+  mmap_warmup ..................................... False
+  moe_capacity_factor ............................. 0
+  moe_expert_model_parallelism .................... True
+  moe_jitter_eps .................................. None
+  moe_lbl_in_fp32 ................................. False
+  moe_loss_weight ................................. 0.1
+  moe_num_experts ................................. 4
+  moe_top_k ....................................... 1
+  moe_use_megatron_switch ......................... False
+  no_load_optim ................................... None
+  no_load_rng ..................................... None
+  no_persist_layer_norm ........................... False
+  no_save_optim ................................... None
+  no_save_rng ..................................... None
+  num_attention_heads ............................. 8
+  num_channels .................................... 3
+  num_classes ..................................... 1000
+  num_layers ...................................... 2
+  num_layers_per_virtual_pipeline_stage ........... None
+  num_workers ..................................... 2
+  onnx_safe ....................................... None
+  openai_gelu ..................................... False
+  optimizer ....................................... adam
+  override_opt_param_scheduler .................... False
+  params_dtype .................................... torch.bfloat16
+  patch_dim ....................................... 16
+  perform_initialization .......................... True
+  pipeline_model_parallel_size .................... 1
+  pipeline_model_parallel_split_rank .............. None
+  query_in_block_prob ............................. 0.1
+  rampup_batch_size ............................... None
+  rank ............................................ 0
+  recompute_granularity ........................... None
+  recompute_method ................................ None
+  recompute_num_layers ............................ 1
+  reset_attention_mask ............................ False
+  reset_position_ids .............................. False
+  retriever_report_topk_accuracies ................ []
+  retriever_score_scaling ......................... False
+  retriever_seq_length ............................ 256
+  sample_rate ..................................... 1.0
+  save ............................................ ./
+  save_interval ................................... 2000
+  scatter_gather_tensors_in_pipeline .............. True
+  seed ............................................ 1234
+  seq_length ...................................... 256
+  sequence_parallel ............................... False
+  sgd_momentum .................................... 0.9
+  short_seq_prob .................................. 0.1
+  split ........................................... 969,30,1
+  standalone_embedding_stage ...................... False
+  start_weight_decay .............................. 0.01
+  swin_backbone_type .............................. tiny
+  tensor_model_parallel_size ...................... 1
+  tensorboard_dir ................................. None
+  tensorboard_log_interval ........................ 1
+  tensorboard_queue_size .......................... 1000
+  test_data_path .................................. None
+  timing_log_level ................................ 0
+  timing_log_option ............................... minmax
+  titles_data_path ................................ None
+  tokenizer_model ................................. None
+  tokenizer_type .................................. GPT2BPETokenizer
+  train_data_path ................................. None
+  train_iters ..................................... 20000
+  train_samples ................................... None
+  transformer_impl ................................ local
+  transformer_pipeline_model_parallel_size ........ 1
+  use_checkpoint_args ............................. False
+  use_checkpoint_opt_param_scheduler .............. False
+  use_contiguous_buffers_in_local_ddp ............. True
+  use_cpu_initialization .......................... None
+  use_distributed_optimizer ....................... False
+  use_flash_attn .................................. True
+  use_one_sent_docs ............................... False
+  use_ring_exchange_p2p ........................... False
+  valid_data_path ................................. None
+  variable_seq_lengths ............................ False
+  virtual_pipeline_model_parallel_size ............ None
+  vision_backbone_type ............................ vit
+  vision_pretraining .............................. False
+  vision_pretraining_type ......................... classify
+  vocab_extra_ids ................................. 0
+  vocab_file ...................................... /mount/gpt2-vocab.json
+  weight_decay .................................... 0.01
+  weight_decay_incr_style ......................... constant
+  world_size ...................................... 1
+-------------------- end of arguments ---------------------
+setting number of micro-batches to constant 8
+> building GPT2BPETokenizer tokenizer ...
+ > padded vocab (size: 50257) with 943 dummy tokens (new size: 51200)
+> initializing torch distributed ...
+> initialized tensor model parallel with size 1
+> initialized pipeline model parallel with size 1
+> setting random seeds to 1234 ...
+> compiling dataset index builder ...
+make: Entering directory '/mount/megablocks/third_party/Megatron-LM/megatron/data'
+make: Nothing to be done for 'default'.
+make: Leaving directory '/mount/megablocks/third_party/Megatron-LM/megatron/data'
+>>> done with dataset index builder. Compilation time: 0.072 seconds
+> compiling and loading fused kernels ...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /mount/megablocks/third_party/Megatron-LM/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_upper_triang_masked_softmax_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module scaled_upper_triang_masked_softmax_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /mount/megablocks/third_party/Megatron-LM/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_masked_softmax_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module scaled_masked_softmax_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /mount/megablocks/third_party/Megatron-LM/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_softmax_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module scaled_softmax_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /mount/megablocks/third_party/Megatron-LM/megatron/fused_kernels/build/build.ninja...
+Building extension module fused_mix_prec_layer_norm_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module fused_mix_prec_layer_norm_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /mount/megablocks/third_party/Megatron-LM/megatron/fused_kernels/build/build.ninja...
+Building extension module fused_dense_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module fused_dense_cuda...
+>>> done with compiling and loading fused kernels. Compilation time: 0.811 seconds
+/mount/megablocks/third_party/Megatron-LM/megatron/initialize.py:277: UserWarning: nvfuser integration in TorchScript is deprecated. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/jit/codegen/cuda/interface.cpp:235.)
+  output = bias_gelu(bias, input)
+/mount/megablocks/third_party/Megatron-LM/megatron/training.py:98: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  start_time_tensor = torch.cuda.DoubleTensor([_TRAIN_START_TIME])
+time to initialize megatron (seconds): 2.506
+[after megatron is initialized] datetime: 2025-11-04 16:45:13 
+building GPT model ...
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 0): 45627392
+> learning rate decay style: cosine
+[after model, optimizer, and learning rate scheduler are built] datetime: 2025-11-04 16:45:13 
+> building train, validation, and test datasets ...
+ > datasets target sizes (minimum size):
+    train:      10240000
+    validation: 1075200
+    test:       51200
+> building train, validation, and test datasets for GPT ...
+Single data path provided for train, valid & test
+ > building dataset index ...
+    reading sizes...
+    reading pointers...
+    reading document index...
+    creating numpy buffer of mmap...
+    creating memory view of numpy buffer...
+ > finished creating indexed dataset in 0.000612 seconds
+    number of documents: 100000
+ > dataset split:
+    train:
+     document indices in [0, 96900) total of 96900 documents
+    validation:
+     document indices in [96900, 99900) total of 3000 documents
+    test:
+     document indices in [99900, 100000) total of 100 documents
+ > loading doc-idx mapping from /mount/megablocks/my-dataset_text_document_train_indexmap_10291200ns_256sl_1234s_doc_idx.npy
+ > loading sample-idx mapping from /mount/megablocks/my-dataset_text_document_train_indexmap_10291200ns_256sl_1234s_sample_idx.npy
+ > loading shuffle-idx mapping from /mount/megablocks/my-dataset_text_document_train_indexmap_10291200ns_256sl_1234s_shuffle_idx.npy
+    loaded indexed file in 0.002 seconds
+    total number of samples: 11512429
+    total number of epochs: 4
+ > loading doc-idx mapping from /mount/megablocks/my-dataset_text_document_valid_indexmap_1080576ns_256sl_1234s_doc_idx.npy
+ > loading sample-idx mapping from /mount/megablocks/my-dataset_text_document_valid_indexmap_1080576ns_256sl_1234s_sample_idx.npy
+ > loading shuffle-idx mapping from /mount/megablocks/my-dataset_text_document_valid_indexmap_1080576ns_256sl_1234s_shuffle_idx.npy
+    loaded indexed file in 0.001 seconds
+    total number of samples: 1087048
+    total number of epochs: 12
+ > loading doc-idx mapping from /mount/megablocks/my-dataset_text_document_test_indexmap_51456ns_256sl_1234s_doc_idx.npy
+ > loading sample-idx mapping from /mount/megablocks/my-dataset_text_document_test_indexmap_51456ns_256sl_1234s_sample_idx.npy
+ > loading shuffle-idx mapping from /mount/megablocks/my-dataset_text_document_test_indexmap_51456ns_256sl_1234s_shuffle_idx.npy
+    loaded indexed file in 0.001 seconds
+    total number of samples: 51876
+    total number of epochs: 27
+> building indices for blendable datasets ...
+ > sample ratios:
+   dataset 0, input: 1, achieved: 1
+> elapsed time for building blendable dataset indices: 0.07 (sec)
+> building indices for blendable datasets ...
+ > sample ratios:
+   dataset 0, input: 1, achieved: 1
+> elapsed time for building blendable dataset indices: 0.01 (sec)
+> building indices for blendable datasets ...
+ > sample ratios:
+   dataset 0, input: 1, achieved: 1
+> elapsed time for building blendable dataset indices: 0.00 (sec)
+> finished creating GPT datasets ...
+[after dataloaders are built] datetime: 2025-11-04 16:45:13 
+done with setup ...
+(min, max) time across ranks (ms):
+    model-and-optimizer-setup ......................: (29.84, 29.84)
+    train/valid/test-data-iterators-setup ..........: (376.84, 376.84)
+training ...
+[before the start of training step] datetime: 2025-11-04 16:45:13 
+ iteration      100/   20000 | consumed samples:        51200 | elapsed time per iteration (ms): 527.1 | learning rate: 3.000E-04 | global batch size:   512 | lm loss: 7.723334E+00 | load balancing loss: 1.013135E-01 | loss scale: 1.0 | grad norm: 1.032 | number of skipped iterations:   0 | number of nan iterations:   0 |
+[Rank 0] (after 100 iterations) memory (MB) | allocated: 802.5 | max allocated: 9464.19580078125 | reserved: 12324.0 | max reserved: 12324.0
+ iteration      200/   20000 | consumed samples:       102400 | elapsed time per iteration (ms): 507.4 | learning rate: 6.000E-04 | global batch size:   512 | lm loss: 4.177180E+00 | load balancing loss: 1.008691E-01 | loss scale: 1.0 | grad norm: 1.391 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      300/   20000 | consumed samples:       153600 | elapsed time per iteration (ms): 509.8 | learning rate: 6.000E-04 | global batch size:   512 | lm loss: 3.414961E+00 | load balancing loss: 1.007178E-01 | loss scale: 1.0 | grad norm: 0.781 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      400/   20000 | consumed samples:       204800 | elapsed time per iteration (ms): 512.7 | learning rate: 5.999E-04 | global batch size:   512 | lm loss: 3.042200E+00 | load balancing loss: 1.006250E-01 | loss scale: 1.0 | grad norm: 0.744 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      500/   20000 | consumed samples:       256000 | elapsed time per iteration (ms): 509.5 | learning rate: 5.997E-04 | global batch size:   512 | lm loss: 2.835084E+00 | load balancing loss: 1.006006E-01 | loss scale: 1.0 | grad norm: 0.600 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      600/   20000 | consumed samples:       307200 | elapsed time per iteration (ms): 512.0 | learning rate: 5.995E-04 | global batch size:   512 | lm loss: 2.685088E+00 | load balancing loss: 1.005176E-01 | loss scale: 1.0 | grad norm: 0.614 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      700/   20000 | consumed samples:       358400 | elapsed time per iteration (ms): 511.3 | learning rate: 5.992E-04 | global batch size:   512 | lm loss: 2.596842E+00 | load balancing loss: 1.004346E-01 | loss scale: 1.0 | grad norm: 0.498 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      800/   20000 | consumed samples:       409600 | elapsed time per iteration (ms): 513.8 | learning rate: 5.988E-04 | global batch size:   512 | lm loss: 2.524698E+00 | load balancing loss: 1.004053E-01 | loss scale: 1.0 | grad norm: 0.498 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      900/   20000 | consumed samples:       460800 | elapsed time per iteration (ms): 510.3 | learning rate: 5.983E-04 | global batch size:   512 | lm loss: 2.459456E+00 | load balancing loss: 1.003857E-01 | loss scale: 1.0 | grad norm: 0.494 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1000/   20000 | consumed samples:       512000 | elapsed time per iteration (ms): 512.2 | learning rate: 5.978E-04 | global batch size:   512 | lm loss: 2.427912E+00 | load balancing loss: 1.002832E-01 | loss scale: 1.0 | grad norm: 0.451 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 1000 | lm loss value: 2.277565E+00 | lm loss PPL: 9.752901E+00 | 
+------------------------------------------------------------------------------------------------
+ iteration     1100/   20000 | consumed samples:       563200 | elapsed time per iteration (ms): 805.9 | learning rate: 5.973E-04 | global batch size:   512 | lm loss: 2.384850E+00 | load balancing loss: 1.002197E-01 | loss scale: 1.0 | grad norm: 0.449 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1200/   20000 | consumed samples:       614400 | elapsed time per iteration (ms): 514.8 | learning rate: 5.966E-04 | global batch size:   512 | lm loss: 2.354597E+00 | load balancing loss: 1.003076E-01 | loss scale: 1.0 | grad norm: 0.423 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1300/   20000 | consumed samples:       665600 | elapsed time per iteration (ms): 511.6 | learning rate: 5.959E-04 | global batch size:   512 | lm loss: 2.336710E+00 | load balancing loss: 1.002930E-01 | loss scale: 1.0 | grad norm: 0.418 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1400/   20000 | consumed samples:       716800 | elapsed time per iteration (ms): 510.7 | learning rate: 5.951E-04 | global batch size:   512 | lm loss: 2.314908E+00 | load balancing loss: 1.002832E-01 | loss scale: 1.0 | grad norm: 0.381 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1500/   20000 | consumed samples:       768000 | elapsed time per iteration (ms): 510.9 | learning rate: 5.943E-04 | global batch size:   512 | lm loss: 2.298699E+00 | load balancing loss: 1.003223E-01 | loss scale: 1.0 | grad norm: 0.418 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1600/   20000 | consumed samples:       819200 | elapsed time per iteration (ms): 513.2 | learning rate: 5.934E-04 | global batch size:   512 | lm loss: 2.281106E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.400 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1700/   20000 | consumed samples:       870400 | elapsed time per iteration (ms): 510.5 | learning rate: 5.924E-04 | global batch size:   512 | lm loss: 2.275196E+00 | load balancing loss: 1.002051E-01 | loss scale: 1.0 | grad norm: 0.358 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1800/   20000 | consumed samples:       921600 | elapsed time per iteration (ms): 511.3 | learning rate: 5.913E-04 | global batch size:   512 | lm loss: 2.262021E+00 | load balancing loss: 1.003174E-01 | loss scale: 1.0 | grad norm: 0.368 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     1900/   20000 | consumed samples:       972800 | elapsed time per iteration (ms): 511.3 | learning rate: 5.902E-04 | global batch size:   512 | lm loss: 2.253511E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.348 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2000/   20000 | consumed samples:      1024000 | elapsed time per iteration (ms): 512.7 | learning rate: 5.891E-04 | global batch size:   512 | lm loss: 2.238623E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.344 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 2000 | lm loss value: 2.135808E+00 | lm loss PPL: 8.463885E+00 | 
+------------------------------------------------------------------------------------------------
+saving checkpoint at iteration    2000 to ./
+  successfully saved checkpoint at iteration    2000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (918.86, 918.86)
+ iteration     2100/   20000 | consumed samples:      1075200 | elapsed time per iteration (ms): 807.9 | learning rate: 5.878E-04 | global batch size:   512 | lm loss: 2.232715E+00 | load balancing loss: 1.003369E-01 | loss scale: 1.0 | grad norm: 0.343 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2200/   20000 | consumed samples:      1126400 | elapsed time per iteration (ms): 512.0 | learning rate: 5.865E-04 | global batch size:   512 | lm loss: 2.223530E+00 | load balancing loss: 1.002734E-01 | loss scale: 1.0 | grad norm: 0.359 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2300/   20000 | consumed samples:      1177600 | elapsed time per iteration (ms): 510.4 | learning rate: 5.852E-04 | global batch size:   512 | lm loss: 2.214426E+00 | load balancing loss: 1.003076E-01 | loss scale: 1.0 | grad norm: 0.344 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2400/   20000 | consumed samples:      1228800 | elapsed time per iteration (ms): 512.1 | learning rate: 5.837E-04 | global batch size:   512 | lm loss: 2.203677E+00 | load balancing loss: 1.003564E-01 | loss scale: 1.0 | grad norm: 0.329 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2500/   20000 | consumed samples:      1280000 | elapsed time per iteration (ms): 511.7 | learning rate: 5.822E-04 | global batch size:   512 | lm loss: 2.204847E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.316 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2600/   20000 | consumed samples:      1331200 | elapsed time per iteration (ms): 510.2 | learning rate: 5.807E-04 | global batch size:   512 | lm loss: 2.197405E+00 | load balancing loss: 1.002686E-01 | loss scale: 1.0 | grad norm: 0.333 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2700/   20000 | consumed samples:      1382400 | elapsed time per iteration (ms): 511.2 | learning rate: 5.790E-04 | global batch size:   512 | lm loss: 2.187991E+00 | load balancing loss: 1.002930E-01 | loss scale: 1.0 | grad norm: 0.351 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2800/   20000 | consumed samples:      1433600 | elapsed time per iteration (ms): 509.7 | learning rate: 5.773E-04 | global batch size:   512 | lm loss: 2.189944E+00 | load balancing loss: 1.002979E-01 | loss scale: 1.0 | grad norm: 0.327 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     2900/   20000 | consumed samples:      1484800 | elapsed time per iteration (ms): 507.4 | learning rate: 5.756E-04 | global batch size:   512 | lm loss: 2.181062E+00 | load balancing loss: 1.002295E-01 | loss scale: 1.0 | grad norm: 0.308 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3000/   20000 | consumed samples:      1536000 | elapsed time per iteration (ms): 506.5 | learning rate: 5.738E-04 | global batch size:   512 | lm loss: 2.176378E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.299 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 3000 | lm loss value: 2.078928E+00 | lm loss PPL: 7.995891E+00 | 
+------------------------------------------------------------------------------------------------
+ iteration     3100/   20000 | consumed samples:      1587200 | elapsed time per iteration (ms): 796.3 | learning rate: 5.719E-04 | global batch size:   512 | lm loss: 2.165854E+00 | load balancing loss: 1.002539E-01 | loss scale: 1.0 | grad norm: 0.311 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3200/   20000 | consumed samples:      1638400 | elapsed time per iteration (ms): 510.3 | learning rate: 5.700E-04 | global batch size:   512 | lm loss: 2.167979E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.300 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3300/   20000 | consumed samples:      1689600 | elapsed time per iteration (ms): 512.6 | learning rate: 5.680E-04 | global batch size:   512 | lm loss: 2.160547E+00 | load balancing loss: 1.003320E-01 | loss scale: 1.0 | grad norm: 0.292 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3400/   20000 | consumed samples:      1740800 | elapsed time per iteration (ms): 508.9 | learning rate: 5.659E-04 | global batch size:   512 | lm loss: 2.159723E+00 | load balancing loss: 1.003125E-01 | loss scale: 1.0 | grad norm: 0.307 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3500/   20000 | consumed samples:      1792000 | elapsed time per iteration (ms): 507.2 | learning rate: 5.638E-04 | global batch size:   512 | lm loss: 2.155400E+00 | load balancing loss: 1.002539E-01 | loss scale: 1.0 | grad norm: 0.309 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3600/   20000 | consumed samples:      1843200 | elapsed time per iteration (ms): 512.0 | learning rate: 5.617E-04 | global batch size:   512 | lm loss: 2.148561E+00 | load balancing loss: 1.004053E-01 | loss scale: 1.0 | grad norm: 0.321 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3700/   20000 | consumed samples:      1894400 | elapsed time per iteration (ms): 511.2 | learning rate: 5.594E-04 | global batch size:   512 | lm loss: 2.140768E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.289 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3800/   20000 | consumed samples:      1945600 | elapsed time per iteration (ms): 512.5 | learning rate: 5.571E-04 | global batch size:   512 | lm loss: 2.137564E+00 | load balancing loss: 1.003076E-01 | loss scale: 1.0 | grad norm: 0.282 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     3900/   20000 | consumed samples:      1996800 | elapsed time per iteration (ms): 514.0 | learning rate: 5.548E-04 | global batch size:   512 | lm loss: 2.135569E+00 | load balancing loss: 1.002979E-01 | loss scale: 1.0 | grad norm: 0.291 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4000/   20000 | consumed samples:      2048000 | elapsed time per iteration (ms): 508.3 | learning rate: 5.524E-04 | global batch size:   512 | lm loss: 2.130247E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.290 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 4000 | lm loss value: 2.046696E+00 | lm loss PPL: 7.742276E+00 | 
+------------------------------------------------------------------------------------------------
+saving checkpoint at iteration    4000 to ./
+  successfully saved checkpoint at iteration    4000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (913.90, 913.90)
+ iteration     4100/   20000 | consumed samples:      2099200 | elapsed time per iteration (ms): 812.3 | learning rate: 5.499E-04 | global batch size:   512 | lm loss: 2.132220E+00 | load balancing loss: 1.003369E-01 | loss scale: 1.0 | grad norm: 0.282 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4200/   20000 | consumed samples:      2150400 | elapsed time per iteration (ms): 506.2 | learning rate: 5.474E-04 | global batch size:   512 | lm loss: 2.128367E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.274 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4300/   20000 | consumed samples:      2201600 | elapsed time per iteration (ms): 510.8 | learning rate: 5.449E-04 | global batch size:   512 | lm loss: 2.127509E+00 | load balancing loss: 1.002637E-01 | loss scale: 1.0 | grad norm: 0.277 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4400/   20000 | consumed samples:      2252800 | elapsed time per iteration (ms): 512.2 | learning rate: 5.422E-04 | global batch size:   512 | lm loss: 2.120418E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.271 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4500/   20000 | consumed samples:      2304000 | elapsed time per iteration (ms): 510.4 | learning rate: 5.396E-04 | global batch size:   512 | lm loss: 2.119161E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.273 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4600/   20000 | consumed samples:      2355200 | elapsed time per iteration (ms): 510.9 | learning rate: 5.368E-04 | global batch size:   512 | lm loss: 2.117363E+00 | load balancing loss: 1.003906E-01 | loss scale: 1.0 | grad norm: 0.269 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4700/   20000 | consumed samples:      2406400 | elapsed time per iteration (ms): 509.6 | learning rate: 5.341E-04 | global batch size:   512 | lm loss: 2.114671E+00 | load balancing loss: 1.003223E-01 | loss scale: 1.0 | grad norm: 0.288 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4800/   20000 | consumed samples:      2457600 | elapsed time per iteration (ms): 510.4 | learning rate: 5.312E-04 | global batch size:   512 | lm loss: 2.110617E+00 | load balancing loss: 1.003125E-01 | loss scale: 1.0 | grad norm: 0.250 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     4900/   20000 | consumed samples:      2508800 | elapsed time per iteration (ms): 516.2 | learning rate: 5.283E-04 | global batch size:   512 | lm loss: 2.109865E+00 | load balancing loss: 1.003223E-01 | loss scale: 1.0 | grad norm: 0.266 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5000/   20000 | consumed samples:      2560000 | elapsed time per iteration (ms): 511.4 | learning rate: 5.254E-04 | global batch size:   512 | lm loss: 2.104013E+00 | load balancing loss: 1.003125E-01 | loss scale: 1.0 | grad norm: 0.252 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 5000 | lm loss value: 2.015589E+00 | lm loss PPL: 7.505150E+00 | 
+------------------------------------------------------------------------------------------------
+ iteration     5100/   20000 | consumed samples:      2611200 | elapsed time per iteration (ms): 802.5 | learning rate: 5.224E-04 | global batch size:   512 | lm loss: 2.102079E+00 | load balancing loss: 1.003027E-01 | loss scale: 1.0 | grad norm: 0.258 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5200/   20000 | consumed samples:      2662400 | elapsed time per iteration (ms): 511.5 | learning rate: 5.194E-04 | global batch size:   512 | lm loss: 2.101021E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.255 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5300/   20000 | consumed samples:      2713600 | elapsed time per iteration (ms): 510.1 | learning rate: 5.163E-04 | global batch size:   512 | lm loss: 2.095655E+00 | load balancing loss: 1.002930E-01 | loss scale: 1.0 | grad norm: 0.272 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5400/   20000 | consumed samples:      2764800 | elapsed time per iteration (ms): 509.9 | learning rate: 5.132E-04 | global batch size:   512 | lm loss: 2.095069E+00 | load balancing loss: 1.003613E-01 | loss scale: 1.0 | grad norm: 0.254 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5500/   20000 | consumed samples:      2816000 | elapsed time per iteration (ms): 507.1 | learning rate: 5.100E-04 | global batch size:   512 | lm loss: 2.091204E+00 | load balancing loss: 1.003809E-01 | loss scale: 1.0 | grad norm: 0.255 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5600/   20000 | consumed samples:      2867200 | elapsed time per iteration (ms): 508.4 | learning rate: 5.068E-04 | global batch size:   512 | lm loss: 2.086335E+00 | load balancing loss: 1.003857E-01 | loss scale: 1.0 | grad norm: 0.249 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5700/   20000 | consumed samples:      2918400 | elapsed time per iteration (ms): 511.4 | learning rate: 5.036E-04 | global batch size:   512 | lm loss: 2.086775E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.253 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5800/   20000 | consumed samples:      2969600 | elapsed time per iteration (ms): 509.1 | learning rate: 5.002E-04 | global batch size:   512 | lm loss: 2.087094E+00 | load balancing loss: 1.002783E-01 | loss scale: 1.0 | grad norm: 0.240 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     5900/   20000 | consumed samples:      3020800 | elapsed time per iteration (ms): 514.0 | learning rate: 4.969E-04 | global batch size:   512 | lm loss: 2.078909E+00 | load balancing loss: 1.002881E-01 | loss scale: 1.0 | grad norm: 0.259 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6000/   20000 | consumed samples:      3072000 | elapsed time per iteration (ms): 513.8 | learning rate: 4.935E-04 | global batch size:   512 | lm loss: 2.083356E+00 | load balancing loss: 1.003662E-01 | loss scale: 1.0 | grad norm: 0.244 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 6000 | lm loss value: 1.992171E+00 | lm loss PPL: 7.331431E+00 | 
+------------------------------------------------------------------------------------------------
+saving checkpoint at iteration    6000 to ./
+  successfully saved checkpoint at iteration    6000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (917.06, 917.06)
+ iteration     6100/   20000 | consumed samples:      3123200 | elapsed time per iteration (ms): 805.0 | learning rate: 4.901E-04 | global batch size:   512 | lm loss: 2.082785E+00 | load balancing loss: 1.002930E-01 | loss scale: 1.0 | grad norm: 0.233 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6200/   20000 | consumed samples:      3174400 | elapsed time per iteration (ms): 510.6 | learning rate: 4.866E-04 | global batch size:   512 | lm loss: 2.083268E+00 | load balancing loss: 1.003027E-01 | loss scale: 1.0 | grad norm: 0.244 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6300/   20000 | consumed samples:      3225600 | elapsed time per iteration (ms): 507.5 | learning rate: 4.831E-04 | global batch size:   512 | lm loss: 2.075244E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.234 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6400/   20000 | consumed samples:      3276800 | elapsed time per iteration (ms): 510.9 | learning rate: 4.796E-04 | global batch size:   512 | lm loss: 2.075535E+00 | load balancing loss: 1.004248E-01 | loss scale: 1.0 | grad norm: 0.236 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6500/   20000 | consumed samples:      3328000 | elapsed time per iteration (ms): 513.8 | learning rate: 4.760E-04 | global batch size:   512 | lm loss: 2.065668E+00 | load balancing loss: 1.004102E-01 | loss scale: 1.0 | grad norm: 0.248 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6600/   20000 | consumed samples:      3379200 | elapsed time per iteration (ms): 510.3 | learning rate: 4.724E-04 | global batch size:   512 | lm loss: 2.073526E+00 | load balancing loss: 1.003174E-01 | loss scale: 1.0 | grad norm: 0.228 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6700/   20000 | consumed samples:      3430400 | elapsed time per iteration (ms): 512.1 | learning rate: 4.687E-04 | global batch size:   512 | lm loss: 2.065552E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.225 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6800/   20000 | consumed samples:      3481600 | elapsed time per iteration (ms): 514.3 | learning rate: 4.650E-04 | global batch size:   512 | lm loss: 2.064612E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.234 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     6900/   20000 | consumed samples:      3532800 | elapsed time per iteration (ms): 516.4 | learning rate: 4.613E-04 | global batch size:   512 | lm loss: 2.065364E+00 | load balancing loss: 1.003809E-01 | loss scale: 1.0 | grad norm: 0.225 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7000/   20000 | consumed samples:      3584000 | elapsed time per iteration (ms): 516.0 | learning rate: 4.575E-04 | global batch size:   512 | lm loss: 2.061232E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.232 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 7000 | lm loss value: 1.976535E+00 | lm loss PPL: 7.217693E+00 | 
+------------------------------------------------------------------------------------------------
+ iteration     7100/   20000 | consumed samples:      3635200 | elapsed time per iteration (ms): 803.0 | learning rate: 4.537E-04 | global batch size:   512 | lm loss: 2.062849E+00 | load balancing loss: 1.002783E-01 | loss scale: 1.0 | grad norm: 0.237 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7200/   20000 | consumed samples:      3686400 | elapsed time per iteration (ms): 512.7 | learning rate: 4.499E-04 | global batch size:   512 | lm loss: 2.058785E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.231 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7300/   20000 | consumed samples:      3737600 | elapsed time per iteration (ms): 510.4 | learning rate: 4.460E-04 | global batch size:   512 | lm loss: 2.055890E+00 | load balancing loss: 1.002832E-01 | loss scale: 1.0 | grad norm: 0.219 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7400/   20000 | consumed samples:      3788800 | elapsed time per iteration (ms): 511.4 | learning rate: 4.422E-04 | global batch size:   512 | lm loss: 2.056773E+00 | load balancing loss: 1.003564E-01 | loss scale: 1.0 | grad norm: 0.226 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7500/   20000 | consumed samples:      3840000 | elapsed time per iteration (ms): 510.3 | learning rate: 4.383E-04 | global batch size:   512 | lm loss: 2.059083E+00 | load balancing loss: 1.002979E-01 | loss scale: 1.0 | grad norm: 0.225 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7600/   20000 | consumed samples:      3891200 | elapsed time per iteration (ms): 511.6 | learning rate: 4.343E-04 | global batch size:   512 | lm loss: 2.052113E+00 | load balancing loss: 1.003369E-01 | loss scale: 1.0 | grad norm: 0.222 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7700/   20000 | consumed samples:      3942400 | elapsed time per iteration (ms): 510.8 | learning rate: 4.303E-04 | global batch size:   512 | lm loss: 2.050148E+00 | load balancing loss: 1.004053E-01 | loss scale: 1.0 | grad norm: 0.220 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7800/   20000 | consumed samples:      3993600 | elapsed time per iteration (ms): 513.3 | learning rate: 4.264E-04 | global batch size:   512 | lm loss: 2.049752E+00 | load balancing loss: 1.003223E-01 | loss scale: 1.0 | grad norm: 0.221 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     7900/   20000 | consumed samples:      4044800 | elapsed time per iteration (ms): 512.2 | learning rate: 4.223E-04 | global batch size:   512 | lm loss: 2.048214E+00 | load balancing loss: 1.003125E-01 | loss scale: 1.0 | grad norm: 0.214 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8000/   20000 | consumed samples:      4096000 | elapsed time per iteration (ms): 507.7 | learning rate: 4.183E-04 | global batch size:   512 | lm loss: 2.050551E+00 | load balancing loss: 1.004004E-01 | loss scale: 1.0 | grad norm: 0.222 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 8000 | lm loss value: 1.966487E+00 | lm loss PPL: 7.145530E+00 | 
+------------------------------------------------------------------------------------------------
+saving checkpoint at iteration    8000 to ./
+  successfully saved checkpoint at iteration    8000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (923.14, 923.14)
+ iteration     8100/   20000 | consumed samples:      4147200 | elapsed time per iteration (ms): 811.6 | learning rate: 4.142E-04 | global batch size:   512 | lm loss: 2.050385E+00 | load balancing loss: 1.003711E-01 | loss scale: 1.0 | grad norm: 0.219 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8200/   20000 | consumed samples:      4198400 | elapsed time per iteration (ms): 508.3 | learning rate: 4.102E-04 | global batch size:   512 | lm loss: 2.041382E+00 | load balancing loss: 1.002686E-01 | loss scale: 1.0 | grad norm: 0.225 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8300/   20000 | consumed samples:      4249600 | elapsed time per iteration (ms): 513.0 | learning rate: 4.061E-04 | global batch size:   512 | lm loss: 2.045814E+00 | load balancing loss: 1.002637E-01 | loss scale: 1.0 | grad norm: 0.210 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8400/   20000 | consumed samples:      4300800 | elapsed time per iteration (ms): 511.3 | learning rate: 4.019E-04 | global batch size:   512 | lm loss: 2.042161E+00 | load balancing loss: 1.002637E-01 | loss scale: 1.0 | grad norm: 0.211 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8500/   20000 | consumed samples:      4352000 | elapsed time per iteration (ms): 508.9 | learning rate: 3.978E-04 | global batch size:   512 | lm loss: 2.040776E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.215 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8600/   20000 | consumed samples:      4403200 | elapsed time per iteration (ms): 503.9 | learning rate: 3.937E-04 | global batch size:   512 | lm loss: 2.037919E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.209 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8700/   20000 | consumed samples:      4454400 | elapsed time per iteration (ms): 507.8 | learning rate: 3.895E-04 | global batch size:   512 | lm loss: 2.039669E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.211 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8800/   20000 | consumed samples:      4505600 | elapsed time per iteration (ms): 513.1 | learning rate: 3.853E-04 | global batch size:   512 | lm loss: 2.039522E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.212 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     8900/   20000 | consumed samples:      4556800 | elapsed time per iteration (ms): 514.9 | learning rate: 3.811E-04 | global batch size:   512 | lm loss: 2.032061E+00 | load balancing loss: 1.003809E-01 | loss scale: 1.0 | grad norm: 0.215 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9000/   20000 | consumed samples:      4608000 | elapsed time per iteration (ms): 510.9 | learning rate: 3.769E-04 | global batch size:   512 | lm loss: 2.033288E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.206 | number of skipped iterations:   0 | number of nan iterations:   0 |
+------------------------------------------------------------------------------------------------
+ validation loss at iteration 9000 | lm loss value: 1.954981E+00 | lm loss PPL: 7.063788E+00 | 
+------------------------------------------------------------------------------------------------
+ iteration     9100/   20000 | consumed samples:      4659200 | elapsed time per iteration (ms): 802.6 | learning rate: 3.727E-04 | global batch size:   512 | lm loss: 2.034612E+00 | load balancing loss: 1.003174E-01 | loss scale: 1.0 | grad norm: 0.209 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9200/   20000 | consumed samples:      4710400 | elapsed time per iteration (ms): 511.0 | learning rate: 3.684E-04 | global batch size:   512 | lm loss: 2.036456E+00 | load balancing loss: 1.003857E-01 | loss scale: 1.0 | grad norm: 0.211 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9300/   20000 | consumed samples:      4761600 | elapsed time per iteration (ms): 510.2 | learning rate: 3.642E-04 | global batch size:   512 | lm loss: 2.028403E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.206 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9400/   20000 | consumed samples:      4812800 | elapsed time per iteration (ms): 507.8 | learning rate: 3.599E-04 | global batch size:   512 | lm loss: 2.034920E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.211 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9500/   20000 | consumed samples:      4864000 | elapsed time per iteration (ms): 504.9 | learning rate: 3.557E-04 | global batch size:   512 | lm loss: 2.029896E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.208 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9600/   20000 | consumed samples:      4915200 | elapsed time per iteration (ms): 507.4 | learning rate: 3.514E-04 | global batch size:   512 | lm loss: 2.024568E+00 | load balancing loss: 1.003857E-01 | loss scale: 1.0 | grad norm: 0.210 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9700/   20000 | consumed samples:      4966400 | elapsed time per iteration (ms): 509.0 | learning rate: 3.471E-04 | global batch size:   512 | lm loss: 2.022207E+00 | load balancing loss: 1.003223E-01 | loss scale: 1.0 | grad norm: 0.202 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9800/   20000 | consumed samples:      5017600 | elapsed time per iteration (ms): 510.2 | learning rate: 3.428E-04 | global batch size:   512 | lm loss: 2.025582E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.207 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration     9900/   20000 | consumed samples:      5068800 | elapsed time per iteration (ms): 510.1 | learning rate: 3.386E-04 | global batch size:   512 | lm loss: 2.022956E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.201 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10000/   20000 | consumed samples:      5120000 | elapsed time per iteration (ms): 511.8 | learning rate: 3.343E-04 | global batch size:   512 | lm loss: 2.022444E+00 | load balancing loss: 1.003564E-01 | loss scale: 1.0 | grad norm: 0.216 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 10000 | lm loss value: 1.944661E+00 | lm loss PPL: 6.991263E+00 | 
+-------------------------------------------------------------------------------------------------
+saving checkpoint at iteration   10000 to ./
+  successfully saved checkpoint at iteration   10000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (933.11, 933.11)
+ iteration    10100/   20000 | consumed samples:      5171200 | elapsed time per iteration (ms): 811.0 | learning rate: 3.300E-04 | global batch size:   512 | lm loss: 2.021449E+00 | load balancing loss: 1.004102E-01 | loss scale: 1.0 | grad norm: 0.207 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10200/   20000 | consumed samples:      5222400 | elapsed time per iteration (ms): 514.4 | learning rate: 3.257E-04 | global batch size:   512 | lm loss: 2.016803E+00 | load balancing loss: 1.004004E-01 | loss scale: 1.0 | grad norm: 0.199 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10300/   20000 | consumed samples:      5273600 | elapsed time per iteration (ms): 516.1 | learning rate: 3.214E-04 | global batch size:   512 | lm loss: 2.020173E+00 | load balancing loss: 1.003076E-01 | loss scale: 1.0 | grad norm: 0.205 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10400/   20000 | consumed samples:      5324800 | elapsed time per iteration (ms): 513.3 | learning rate: 3.172E-04 | global batch size:   512 | lm loss: 2.017035E+00 | load balancing loss: 1.002832E-01 | loss scale: 1.0 | grad norm: 0.199 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10500/   20000 | consumed samples:      5376000 | elapsed time per iteration (ms): 512.6 | learning rate: 3.129E-04 | global batch size:   512 | lm loss: 2.015970E+00 | load balancing loss: 1.004004E-01 | loss scale: 1.0 | grad norm: 0.199 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10600/   20000 | consumed samples:      5427200 | elapsed time per iteration (ms): 513.6 | learning rate: 3.086E-04 | global batch size:   512 | lm loss: 2.016421E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.196 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10700/   20000 | consumed samples:      5478400 | elapsed time per iteration (ms): 515.9 | learning rate: 3.043E-04 | global batch size:   512 | lm loss: 2.015646E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.196 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10800/   20000 | consumed samples:      5529600 | elapsed time per iteration (ms): 510.4 | learning rate: 3.001E-04 | global batch size:   512 | lm loss: 2.017075E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.200 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    10900/   20000 | consumed samples:      5580800 | elapsed time per iteration (ms): 511.9 | learning rate: 2.958E-04 | global batch size:   512 | lm loss: 2.017524E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.200 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11000/   20000 | consumed samples:      5632000 | elapsed time per iteration (ms): 509.9 | learning rate: 2.916E-04 | global batch size:   512 | lm loss: 2.004968E+00 | load balancing loss: 1.002539E-01 | loss scale: 1.0 | grad norm: 0.201 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 11000 | lm loss value: 1.933084E+00 | lm loss PPL: 6.910790E+00 | 
+-------------------------------------------------------------------------------------------------
+ iteration    11100/   20000 | consumed samples:      5683200 | elapsed time per iteration (ms): 798.3 | learning rate: 2.873E-04 | global batch size:   512 | lm loss: 2.008423E+00 | load balancing loss: 1.003613E-01 | loss scale: 1.0 | grad norm: 0.200 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11200/   20000 | consumed samples:      5734400 | elapsed time per iteration (ms): 512.7 | learning rate: 2.831E-04 | global batch size:   512 | lm loss: 2.014229E+00 | load balancing loss: 1.002783E-01 | loss scale: 1.0 | grad norm: 0.199 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11300/   20000 | consumed samples:      5785600 | elapsed time per iteration (ms): 511.2 | learning rate: 2.789E-04 | global batch size:   512 | lm loss: 2.008922E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.201 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11400/   20000 | consumed samples:      5836800 | elapsed time per iteration (ms): 511.6 | learning rate: 2.747E-04 | global batch size:   512 | lm loss: 2.004218E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.200 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11500/   20000 | consumed samples:      5888000 | elapsed time per iteration (ms): 511.2 | learning rate: 2.705E-04 | global batch size:   512 | lm loss: 2.003501E+00 | load balancing loss: 1.002783E-01 | loss scale: 1.0 | grad norm: 0.195 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11600/   20000 | consumed samples:      5939200 | elapsed time per iteration (ms): 511.7 | learning rate: 2.663E-04 | global batch size:   512 | lm loss: 2.007641E+00 | load balancing loss: 1.003125E-01 | loss scale: 1.0 | grad norm: 0.196 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11700/   20000 | consumed samples:      5990400 | elapsed time per iteration (ms): 509.6 | learning rate: 2.622E-04 | global batch size:   512 | lm loss: 2.006127E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.193 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11800/   20000 | consumed samples:      6041600 | elapsed time per iteration (ms): 509.2 | learning rate: 2.581E-04 | global batch size:   512 | lm loss: 2.001063E+00 | load balancing loss: 1.004150E-01 | loss scale: 1.0 | grad norm: 0.205 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    11900/   20000 | consumed samples:      6092800 | elapsed time per iteration (ms): 510.9 | learning rate: 2.539E-04 | global batch size:   512 | lm loss: 1.999462E+00 | load balancing loss: 1.004004E-01 | loss scale: 1.0 | grad norm: 0.194 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12000/   20000 | consumed samples:      6144000 | elapsed time per iteration (ms): 509.8 | learning rate: 2.498E-04 | global batch size:   512 | lm loss: 2.002713E+00 | load balancing loss: 1.003174E-01 | loss scale: 1.0 | grad norm: 0.199 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 12000 | lm loss value: 1.923751E+00 | lm loss PPL: 6.846590E+00 | 
+-------------------------------------------------------------------------------------------------
+saving checkpoint at iteration   12000 to ./
+  successfully saved checkpoint at iteration   12000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (931.59, 931.59)
+ iteration    12100/   20000 | consumed samples:      6195200 | elapsed time per iteration (ms): 814.6 | learning rate: 2.458E-04 | global batch size:   512 | lm loss: 1.997975E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.194 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12200/   20000 | consumed samples:      6246400 | elapsed time per iteration (ms): 512.2 | learning rate: 2.417E-04 | global batch size:   512 | lm loss: 2.001091E+00 | load balancing loss: 1.003125E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12300/   20000 | consumed samples:      6297600 | elapsed time per iteration (ms): 507.5 | learning rate: 2.377E-04 | global batch size:   512 | lm loss: 1.997372E+00 | load balancing loss: 1.003369E-01 | loss scale: 1.0 | grad norm: 0.191 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12400/   20000 | consumed samples:      6348800 | elapsed time per iteration (ms): 508.6 | learning rate: 2.336E-04 | global batch size:   512 | lm loss: 1.991661E+00 | load balancing loss: 1.003662E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12500/   20000 | consumed samples:      6400000 | elapsed time per iteration (ms): 512.1 | learning rate: 2.297E-04 | global batch size:   512 | lm loss: 1.999918E+00 | load balancing loss: 1.003076E-01 | loss scale: 1.0 | grad norm: 0.197 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12600/   20000 | consumed samples:      6451200 | elapsed time per iteration (ms): 510.4 | learning rate: 2.257E-04 | global batch size:   512 | lm loss: 1.998197E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.194 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12700/   20000 | consumed samples:      6502400 | elapsed time per iteration (ms): 510.0 | learning rate: 2.217E-04 | global batch size:   512 | lm loss: 1.999541E+00 | load balancing loss: 1.003076E-01 | loss scale: 1.0 | grad norm: 0.195 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12800/   20000 | consumed samples:      6553600 | elapsed time per iteration (ms): 511.4 | learning rate: 2.178E-04 | global batch size:   512 | lm loss: 1.996700E+00 | load balancing loss: 1.003027E-01 | loss scale: 1.0 | grad norm: 0.191 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    12900/   20000 | consumed samples:      6604800 | elapsed time per iteration (ms): 510.8 | learning rate: 2.140E-04 | global batch size:   512 | lm loss: 1.995344E+00 | load balancing loss: 1.002979E-01 | loss scale: 1.0 | grad norm: 0.197 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13000/   20000 | consumed samples:      6656000 | elapsed time per iteration (ms): 510.0 | learning rate: 2.101E-04 | global batch size:   512 | lm loss: 1.989434E+00 | load balancing loss: 1.003857E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 13000 | lm loss value: 1.919118E+00 | lm loss PPL: 6.814948E+00 | 
+-------------------------------------------------------------------------------------------------
+ iteration    13100/   20000 | consumed samples:      6707200 | elapsed time per iteration (ms): 799.8 | learning rate: 2.063E-04 | global batch size:   512 | lm loss: 1.989943E+00 | load balancing loss: 1.004150E-01 | loss scale: 1.0 | grad norm: 0.193 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13200/   20000 | consumed samples:      6758400 | elapsed time per iteration (ms): 511.9 | learning rate: 2.025E-04 | global batch size:   512 | lm loss: 1.994747E+00 | load balancing loss: 1.002734E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13300/   20000 | consumed samples:      6809600 | elapsed time per iteration (ms): 510.0 | learning rate: 1.987E-04 | global batch size:   512 | lm loss: 1.990267E+00 | load balancing loss: 1.003662E-01 | loss scale: 1.0 | grad norm: 0.197 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13400/   20000 | consumed samples:      6860800 | elapsed time per iteration (ms): 508.3 | learning rate: 1.950E-04 | global batch size:   512 | lm loss: 1.991531E+00 | load balancing loss: 1.003857E-01 | loss scale: 1.0 | grad norm: 0.204 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13500/   20000 | consumed samples:      6912000 | elapsed time per iteration (ms): 511.7 | learning rate: 1.913E-04 | global batch size:   512 | lm loss: 1.991469E+00 | load balancing loss: 1.003467E-01 | loss scale: 1.0 | grad norm: 0.193 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13600/   20000 | consumed samples:      6963200 | elapsed time per iteration (ms): 516.3 | learning rate: 1.876E-04 | global batch size:   512 | lm loss: 1.986973E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.186 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13700/   20000 | consumed samples:      7014400 | elapsed time per iteration (ms): 513.7 | learning rate: 1.840E-04 | global batch size:   512 | lm loss: 1.989525E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.197 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13800/   20000 | consumed samples:      7065600 | elapsed time per iteration (ms): 510.9 | learning rate: 1.804E-04 | global batch size:   512 | lm loss: 1.984025E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.195 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    13900/   20000 | consumed samples:      7116800 | elapsed time per iteration (ms): 508.6 | learning rate: 1.769E-04 | global batch size:   512 | lm loss: 1.984063E+00 | load balancing loss: 1.003662E-01 | loss scale: 1.0 | grad norm: 0.195 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14000/   20000 | consumed samples:      7168000 | elapsed time per iteration (ms): 511.0 | learning rate: 1.734E-04 | global batch size:   512 | lm loss: 1.984695E+00 | load balancing loss: 1.003662E-01 | loss scale: 1.0 | grad norm: 0.194 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 14000 | lm loss value: 1.913168E+00 | lm loss PPL: 6.774515E+00 | 
+-------------------------------------------------------------------------------------------------
+saving checkpoint at iteration   14000 to ./
+  successfully saved checkpoint at iteration   14000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (922.19, 922.19)
+ iteration    14100/   20000 | consumed samples:      7219200 | elapsed time per iteration (ms): 812.2 | learning rate: 1.699E-04 | global batch size:   512 | lm loss: 1.978162E+00 | load balancing loss: 1.004053E-01 | loss scale: 1.0 | grad norm: 0.195 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14200/   20000 | consumed samples:      7270400 | elapsed time per iteration (ms): 509.4 | learning rate: 1.665E-04 | global batch size:   512 | lm loss: 1.985906E+00 | load balancing loss: 1.003711E-01 | loss scale: 1.0 | grad norm: 0.195 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14300/   20000 | consumed samples:      7321600 | elapsed time per iteration (ms): 509.9 | learning rate: 1.631E-04 | global batch size:   512 | lm loss: 1.981452E+00 | load balancing loss: 1.004053E-01 | loss scale: 1.0 | grad norm: 0.196 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14400/   20000 | consumed samples:      7372800 | elapsed time per iteration (ms): 508.7 | learning rate: 1.598E-04 | global batch size:   512 | lm loss: 1.979933E+00 | load balancing loss: 1.003906E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14500/   20000 | consumed samples:      7424000 | elapsed time per iteration (ms): 507.4 | learning rate: 1.564E-04 | global batch size:   512 | lm loss: 1.982516E+00 | load balancing loss: 1.003809E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14600/   20000 | consumed samples:      7475200 | elapsed time per iteration (ms): 507.4 | learning rate: 1.532E-04 | global batch size:   512 | lm loss: 1.978943E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.191 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14700/   20000 | consumed samples:      7526400 | elapsed time per iteration (ms): 508.5 | learning rate: 1.500E-04 | global batch size:   512 | lm loss: 1.978293E+00 | load balancing loss: 1.004248E-01 | loss scale: 1.0 | grad norm: 0.199 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14800/   20000 | consumed samples:      7577600 | elapsed time per iteration (ms): 511.4 | learning rate: 1.468E-04 | global batch size:   512 | lm loss: 1.980983E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.196 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    14900/   20000 | consumed samples:      7628800 | elapsed time per iteration (ms): 512.9 | learning rate: 1.437E-04 | global batch size:   512 | lm loss: 1.978043E+00 | load balancing loss: 1.003320E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15000/   20000 | consumed samples:      7680000 | elapsed time per iteration (ms): 512.4 | learning rate: 1.406E-04 | global batch size:   512 | lm loss: 1.977875E+00 | load balancing loss: 1.004150E-01 | loss scale: 1.0 | grad norm: 0.193 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 15000 | lm loss value: 1.904897E+00 | lm loss PPL: 6.718717E+00 | 
+-------------------------------------------------------------------------------------------------
+ iteration    15100/   20000 | consumed samples:      7731200 | elapsed time per iteration (ms): 804.5 | learning rate: 1.376E-04 | global batch size:   512 | lm loss: 1.979263E+00 | load balancing loss: 1.003809E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15200/   20000 | consumed samples:      7782400 | elapsed time per iteration (ms): 511.1 | learning rate: 1.346E-04 | global batch size:   512 | lm loss: 1.975847E+00 | load balancing loss: 1.004150E-01 | loss scale: 1.0 | grad norm: 0.192 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15300/   20000 | consumed samples:      7833600 | elapsed time per iteration (ms): 515.3 | learning rate: 1.317E-04 | global batch size:   512 | lm loss: 1.974314E+00 | load balancing loss: 1.004199E-01 | loss scale: 1.0 | grad norm: 0.192 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15400/   20000 | consumed samples:      7884800 | elapsed time per iteration (ms): 507.2 | learning rate: 1.288E-04 | global batch size:   512 | lm loss: 1.974342E+00 | load balancing loss: 1.003662E-01 | loss scale: 1.0 | grad norm: 0.187 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15500/   20000 | consumed samples:      7936000 | elapsed time per iteration (ms): 508.5 | learning rate: 1.259E-04 | global batch size:   512 | lm loss: 1.972936E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15600/   20000 | consumed samples:      7987200 | elapsed time per iteration (ms): 508.2 | learning rate: 1.232E-04 | global batch size:   512 | lm loss: 1.977753E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15700/   20000 | consumed samples:      8038400 | elapsed time per iteration (ms): 509.6 | learning rate: 1.204E-04 | global batch size:   512 | lm loss: 1.974757E+00 | load balancing loss: 1.004150E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15800/   20000 | consumed samples:      8089600 | elapsed time per iteration (ms): 510.5 | learning rate: 1.178E-04 | global batch size:   512 | lm loss: 1.969079E+00 | load balancing loss: 1.004443E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    15900/   20000 | consumed samples:      8140800 | elapsed time per iteration (ms): 508.5 | learning rate: 1.151E-04 | global batch size:   512 | lm loss: 1.974867E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16000/   20000 | consumed samples:      8192000 | elapsed time per iteration (ms): 510.8 | learning rate: 1.126E-04 | global batch size:   512 | lm loss: 1.976765E+00 | load balancing loss: 1.003027E-01 | loss scale: 1.0 | grad norm: 0.193 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 16000 | lm loss value: 1.904732E+00 | lm loss PPL: 6.717606E+00 | 
+-------------------------------------------------------------------------------------------------
+saving checkpoint at iteration   16000 to ./
+  successfully saved checkpoint at iteration   16000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (924.54, 924.54)
+ iteration    16100/   20000 | consumed samples:      8243200 | elapsed time per iteration (ms): 808.3 | learning rate: 1.101E-04 | global batch size:   512 | lm loss: 1.973684E+00 | load balancing loss: 1.004102E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16200/   20000 | consumed samples:      8294400 | elapsed time per iteration (ms): 508.5 | learning rate: 1.076E-04 | global batch size:   512 | lm loss: 1.972040E+00 | load balancing loss: 1.003906E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16300/   20000 | consumed samples:      8345600 | elapsed time per iteration (ms): 509.0 | learning rate: 1.052E-04 | global batch size:   512 | lm loss: 1.971073E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.192 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16400/   20000 | consumed samples:      8396800 | elapsed time per iteration (ms): 510.2 | learning rate: 1.029E-04 | global batch size:   512 | lm loss: 1.967854E+00 | load balancing loss: 1.004248E-01 | loss scale: 1.0 | grad norm: 0.186 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16500/   20000 | consumed samples:      8448000 | elapsed time per iteration (ms): 509.8 | learning rate: 1.006E-04 | global batch size:   512 | lm loss: 1.971434E+00 | load balancing loss: 1.003223E-01 | loss scale: 1.0 | grad norm: 0.191 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16600/   20000 | consumed samples:      8499200 | elapsed time per iteration (ms): 510.6 | learning rate: 9.834E-05 | global batch size:   512 | lm loss: 1.969104E+00 | load balancing loss: 1.004053E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16700/   20000 | consumed samples:      8550400 | elapsed time per iteration (ms): 511.8 | learning rate: 9.617E-05 | global batch size:   512 | lm loss: 1.970108E+00 | load balancing loss: 1.004297E-01 | loss scale: 1.0 | grad norm: 0.191 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16800/   20000 | consumed samples:      8601600 | elapsed time per iteration (ms): 509.6 | learning rate: 9.406E-05 | global batch size:   512 | lm loss: 1.970083E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    16900/   20000 | consumed samples:      8652800 | elapsed time per iteration (ms): 509.8 | learning rate: 9.201E-05 | global batch size:   512 | lm loss: 1.969209E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17000/   20000 | consumed samples:      8704000 | elapsed time per iteration (ms): 509.9 | learning rate: 9.001E-05 | global batch size:   512 | lm loss: 1.967797E+00 | load balancing loss: 1.003125E-01 | loss scale: 1.0 | grad norm: 0.187 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 17000 | lm loss value: 1.899095E+00 | lm loss PPL: 6.679849E+00 | 
+-------------------------------------------------------------------------------------------------
+ iteration    17100/   20000 | consumed samples:      8755200 | elapsed time per iteration (ms): 801.2 | learning rate: 8.808E-05 | global batch size:   512 | lm loss: 1.964582E+00 | load balancing loss: 1.003223E-01 | loss scale: 1.0 | grad norm: 0.186 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17200/   20000 | consumed samples:      8806400 | elapsed time per iteration (ms): 508.9 | learning rate: 8.621E-05 | global batch size:   512 | lm loss: 1.964402E+00 | load balancing loss: 1.003662E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17300/   20000 | consumed samples:      8857600 | elapsed time per iteration (ms): 508.8 | learning rate: 8.440E-05 | global batch size:   512 | lm loss: 1.966985E+00 | load balancing loss: 1.003369E-01 | loss scale: 1.0 | grad norm: 0.191 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17400/   20000 | consumed samples:      8908800 | elapsed time per iteration (ms): 512.8 | learning rate: 8.265E-05 | global batch size:   512 | lm loss: 1.958050E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17500/   20000 | consumed samples:      8960000 | elapsed time per iteration (ms): 508.6 | learning rate: 8.096E-05 | global batch size:   512 | lm loss: 1.960963E+00 | load balancing loss: 1.003516E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17600/   20000 | consumed samples:      9011200 | elapsed time per iteration (ms): 507.3 | learning rate: 7.934E-05 | global batch size:   512 | lm loss: 1.963887E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.187 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17700/   20000 | consumed samples:      9062400 | elapsed time per iteration (ms): 508.8 | learning rate: 7.778E-05 | global batch size:   512 | lm loss: 1.960414E+00 | load balancing loss: 1.003857E-01 | loss scale: 1.0 | grad norm: 0.186 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17800/   20000 | consumed samples:      9113600 | elapsed time per iteration (ms): 513.0 | learning rate: 7.628E-05 | global batch size:   512 | lm loss: 1.960816E+00 | load balancing loss: 1.003369E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    17900/   20000 | consumed samples:      9164800 | elapsed time per iteration (ms): 511.5 | learning rate: 7.485E-05 | global batch size:   512 | lm loss: 1.962244E+00 | load balancing loss: 1.003857E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18000/   20000 | consumed samples:      9216000 | elapsed time per iteration (ms): 510.2 | learning rate: 7.348E-05 | global batch size:   512 | lm loss: 1.965823E+00 | load balancing loss: 1.003906E-01 | loss scale: 1.0 | grad norm: 0.183 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 18000 | lm loss value: 1.894251E+00 | lm loss PPL: 6.647567E+00 | 
+-------------------------------------------------------------------------------------------------
+saving checkpoint at iteration   18000 to ./
+  successfully saved checkpoint at iteration   18000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (917.77, 917.77)
+ iteration    18100/   20000 | consumed samples:      9267200 | elapsed time per iteration (ms): 811.4 | learning rate: 7.218E-05 | global batch size:   512 | lm loss: 1.963929E+00 | load balancing loss: 1.003613E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18200/   20000 | consumed samples:      9318400 | elapsed time per iteration (ms): 512.9 | learning rate: 7.094E-05 | global batch size:   512 | lm loss: 1.964121E+00 | load balancing loss: 1.003271E-01 | loss scale: 1.0 | grad norm: 0.187 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18300/   20000 | consumed samples:      9369600 | elapsed time per iteration (ms): 514.0 | learning rate: 6.976E-05 | global batch size:   512 | lm loss: 1.959965E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.191 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18400/   20000 | consumed samples:      9420800 | elapsed time per iteration (ms): 515.1 | learning rate: 6.865E-05 | global batch size:   512 | lm loss: 1.958487E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.193 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18500/   20000 | consumed samples:      9472000 | elapsed time per iteration (ms): 512.2 | learning rate: 6.761E-05 | global batch size:   512 | lm loss: 1.957150E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.191 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18600/   20000 | consumed samples:      9523200 | elapsed time per iteration (ms): 514.5 | learning rate: 6.663E-05 | global batch size:   512 | lm loss: 1.960298E+00 | load balancing loss: 1.003711E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18700/   20000 | consumed samples:      9574400 | elapsed time per iteration (ms): 517.3 | learning rate: 6.572E-05 | global batch size:   512 | lm loss: 1.963753E+00 | load balancing loss: 1.003906E-01 | loss scale: 1.0 | grad norm: 0.192 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18800/   20000 | consumed samples:      9625600 | elapsed time per iteration (ms): 510.6 | learning rate: 6.488E-05 | global batch size:   512 | lm loss: 1.957902E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    18900/   20000 | consumed samples:      9676800 | elapsed time per iteration (ms): 513.4 | learning rate: 6.410E-05 | global batch size:   512 | lm loss: 1.955168E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19000/   20000 | consumed samples:      9728000 | elapsed time per iteration (ms): 514.7 | learning rate: 6.339E-05 | global batch size:   512 | lm loss: 1.959966E+00 | load balancing loss: 1.003418E-01 | loss scale: 1.0 | grad norm: 0.192 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 19000 | lm loss value: 1.891939E+00 | lm loss PPL: 6.632219E+00 | 
+-------------------------------------------------------------------------------------------------
+ iteration    19100/   20000 | consumed samples:      9779200 | elapsed time per iteration (ms): 800.1 | learning rate: 6.275E-05 | global batch size:   512 | lm loss: 1.958748E+00 | load balancing loss: 1.003906E-01 | loss scale: 1.0 | grad norm: 0.187 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19200/   20000 | consumed samples:      9830400 | elapsed time per iteration (ms): 511.3 | learning rate: 6.217E-05 | global batch size:   512 | lm loss: 1.957941E+00 | load balancing loss: 1.003369E-01 | loss scale: 1.0 | grad norm: 0.189 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19300/   20000 | consumed samples:      9881600 | elapsed time per iteration (ms): 512.7 | learning rate: 6.166E-05 | global batch size:   512 | lm loss: 1.960098E+00 | load balancing loss: 1.004004E-01 | loss scale: 1.0 | grad norm: 0.185 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19400/   20000 | consumed samples:      9932800 | elapsed time per iteration (ms): 510.5 | learning rate: 6.122E-05 | global batch size:   512 | lm loss: 1.959046E+00 | load balancing loss: 1.003662E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19500/   20000 | consumed samples:      9984000 | elapsed time per iteration (ms): 510.9 | learning rate: 6.085E-05 | global batch size:   512 | lm loss: 1.961989E+00 | load balancing loss: 1.003760E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19600/   20000 | consumed samples:     10035200 | elapsed time per iteration (ms): 514.7 | learning rate: 6.054E-05 | global batch size:   512 | lm loss: 1.957384E+00 | load balancing loss: 1.003955E-01 | loss scale: 1.0 | grad norm: 0.190 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19700/   20000 | consumed samples:     10086400 | elapsed time per iteration (ms): 511.6 | learning rate: 6.031E-05 | global batch size:   512 | lm loss: 1.956981E+00 | load balancing loss: 1.003711E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19800/   20000 | consumed samples:     10137600 | elapsed time per iteration (ms): 513.1 | learning rate: 6.014E-05 | global batch size:   512 | lm loss: 1.959143E+00 | load balancing loss: 1.004395E-01 | loss scale: 1.0 | grad norm: 0.187 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    19900/   20000 | consumed samples:     10188800 | elapsed time per iteration (ms): 514.5 | learning rate: 6.003E-05 | global batch size:   512 | lm loss: 1.959478E+00 | load balancing loss: 1.003369E-01 | loss scale: 1.0 | grad norm: 0.188 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration    20000/   20000 | consumed samples:     10240000 | elapsed time per iteration (ms): 512.1 | learning rate: 6.000E-05 | global batch size:   512 | lm loss: 1.958058E+00 | load balancing loss: 1.004199E-01 | loss scale: 1.0 | grad norm: 0.193 | number of skipped iterations:   0 | number of nan iterations:   0 |
+-------------------------------------------------------------------------------------------------
+ validation loss at iteration 20000 | lm loss value: 1.891129E+00 | lm loss PPL: 6.626848E+00 | 
+-------------------------------------------------------------------------------------------------
+saving checkpoint at iteration   20000 to ./
+  successfully saved checkpoint at iteration   20000 to ./
+(min, max) time across ranks (ms):
+    save-checkpoint ................................: (945.50, 945.50)
+[after training is done] datetime: 2025-11-04 19:45:25 
+------------------------------------------------------------------------------------------------------------------
+ validation loss at the end of training for val data | lm loss value: 1.888987E+00 | lm loss PPL: 6.612666E+00 | 
+------------------------------------------------------------------------------------------------------------------
+saving checkpoint at iteration   20000 to ./
+  successfully saved checkpoint at iteration   20000 to ./
+-------------------------------------------------------------------------------------------------------------------
+ validation loss at the end of training for test data | lm loss value: 2.026446E+00 | lm loss PPL: 7.587071E+00 | 
+-------------------------------------------------------------------------------------------------------------------
