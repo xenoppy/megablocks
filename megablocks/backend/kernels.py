@@ -401,6 +401,7 @@ def binned_gather(x, indices, weights, bins, expert_capacity, top_k):
         assert_equal(weights.shape[0], x.shape[0] * top_k)
 
     num_experts = bins.shape[0]
+    #@weichu:drop tokens
     out = torch.zeros(
         (num_experts, expert_capacity, x.shape[1]),
         dtype=x.dtype,
