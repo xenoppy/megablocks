@@ -1,0 +1,272 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python Debugger: MOE",
+            "type": "debugpy",
+            "request": "launch",
+            // "program": "${file}",
+            "module": "torch.distributed.run",
+            "env": {
+                "CUDA_DEVICE_MAX_CONNECTIONS": "1"
+            },
+            "console": "integratedTerminal",
+            "args": [
+
+               "--nproc_per_node", "1",
+               "--nnodes", "1",
+               "--node_rank", "0",
+               "--master_addr", "localhost",
+               "--master_port", "6000",
+
+                "third_party/Megatron-LM/pretrain_gpt.py",
+
+               "--moe-num-experts", "4",
+                "--moe-capacity-factor", "2",
+                "--moe-loss-weight", "0.1",
+                "--moe-top-k", "1",
+                
+
+                "--num-layers", "2",
+                "--hidden-size", "512",
+                "--num-attention-heads", "8",
+                "--seq-length", "256",
+                "--max-position-embeddings", "1024",
+
+                "--micro-batch-size", "64",
+                "--global-batch-size", "512",
+                "--train-iters", "20000",
+                "--lr-decay-iters", "20000",
+                "--lr", "0.0006",
+                "--min-lr", "0.00006",
+                "--lr-decay-style", "cosine",
+                "--lr-warmup-fraction", "0.01",
+                "--clip-grad", "1.0",
+                "--init-method-std", "0.01",
+                "--optimizer", "adam",
+
+                "--data-path", "1.0", "/mount/megablocks/my-dataset_text_document",
+                "--vocab-file", "/mount/gpt2-vocab.json",
+                "--merge-file", "/mount/gpt2-merges.txt",
+                "--make-vocab-size-divisible-by", "1024",
+                "--split", "969,30,1",
+
+                "--fp16",
+                "--DDP-impl", "local",
+                "--moe-expert-model-parallelism",
+                "--no-async-tensor-model-parallel-allreduce",
+
+                "--save-interval", "2000",
+                "--save", "./debug_run",
+
+                "--eval-iters", "100",
+                "--log-interval", "100",
+                "--eval-interval", "1000"
+            ],
+        },
+        {
+            "name": "Python Debugger: DMOE",
+            "type": "debugpy",
+            "request": "launch",
+            // "program": "${file}",
+            "module": "torch.distributed.run",
+            "env": {
+                "CUDA_DEVICE_MAX_CONNECTIONS": "1"
+            },
+            "console": "integratedTerminal",
+            "args": [
+                "--nproc_per_node",
+                "1",
+                "--nnodes",
+                "1",
+                "--node_rank",
+                "0",
+                "--master_addr",
+                "localhost",
+                "--master_port",
+                "6000",
+                // --- 你的 Python 脚本 ---
+                // (这是 torchrun 之后的第一个参数)
+                "third_party/Megatron-LM/pretrain_gpt.py",
+                // --- 来自 MOE_ARGUMENTS ---
+                // (注意：这里我们使用脚本中的默认值)
+                "--moe-num-experts=4",
+                "--moe-loss-weight=0.1",
+                "--moe-top-k=1",
+                // --- 来自 MODEL_ARGUMENTS ---
+                "--num-layers",
+                "2",
+                "--hidden-size",
+                "512",
+                "--num-attention-heads",
+                "8",
+                "--seq-length",
+                "256",
+                "--max-position-embeddings",
+                "1024",
+                // --- 来自 TRAINING_ARGUMENTS ---
+                // (使用脚本中的默认值)
+                "--micro-batch-size",
+                "64",
+                "--global-batch-size",
+                "512",
+                "--train-iters",
+                "20000",
+                "--lr-decay-iters",
+                "20000",
+                "--lr",
+                "0.0006",
+                "--min-lr",
+                "0.00006",
+                "--lr-decay-style",
+                "cosine",
+                "--lr-warmup-fraction",
+                "0.01",
+                "--clip-grad",
+                "1.0",
+                "--init-method-std",
+                "0.01",
+                "--optimizer",
+                "adam",
+                // --- 来自 DATA_ARGUMENTS ---
+                "--data-path",
+                "1.0",
+                "/mount/megablocks/my-dataset_text_document",
+                "--vocab-file",
+                "/mount/gpt2-vocab.json",
+                "--merge-file",
+                "/mount/gpt2-merges.txt",
+                "--make-vocab-size-divisible-by",
+                "1024",
+                "--split",
+                "969,30,1",
+                // --- 来自 COMPUTE_ARGUMENTS ---
+                "--fp16",
+                "--DDP-impl",
+                "local",
+                "--moe-expert-model-parallelism",
+                "--no-async-tensor-model-parallel-allreduce",
+                // "--use-flash-attn",
+                // --- 来自 CHECKPOINT_ARGUMENTS ---
+                "--save-interval",
+                "2000",
+                // !! 注意 !!
+                // 你的 EXP_DIR 是 $1，这里必须手动指定一个值
+                // 我先用 "my_experiment_debug" 作为例子
+                "--save",
+                "./my_experiment_debug",
+                // --- 来自 EVALUATION_ARGUMENTS ---
+                "--eval-iters",
+                "100",
+                "--log-interval",
+                "100",
+                "--eval-interval",
+                "1000"
+            ]
+        },
+        {
+            "name": "Python Debugger: multi-DMOE",
+            "type": "debugpy",
+            "request": "launch",
+            // "program": "${file}",
+            "module": "torch.distributed.run",
+            "env": {
+                "CUDA_DEVICE_MAX_CONNECTIONS": "1"
+            },
+            "console": "integratedTerminal",
+            "args": [
+                "--nproc_per_node",
+                "1",
+                "--nnodes",
+                "1",
+                "--node_rank",
+                "0",
+                "--master_addr",
+                "localhost",
+                "--master_port",
+                "6000",
+                // --- 你的 Python 脚本 ---
+                // (这是 torchrun 之后的第一个参数)
+                "third_party/Megatron-LM/pretrain_gpt.py",
+                // --- 来自 MOE_ARGUMENTS ---
+                // (注意：这里我们使用脚本中的默认值)
+                "--moe-num-experts=4",
+                "--moe-loss-weight=0.1",
+                "--moe-top-k=1",
+                // --- 来自 MODEL_ARGUMENTS ---
+                "--num-layers",
+                "2",
+                "--hidden-size",
+                "512",
+                "--num-attention-heads",
+                "8",
+                "--seq-length",
+                "256",
+                "--max-position-embeddings",
+                "1024",
+                // --- 来自 TRAINING_ARGUMENTS ---
+                // (使用脚本中的默认值)
+                "--micro-batch-size",
+                "64",
+                "--global-batch-size",
+                "512",
+                "--train-iters",
+                "20000",
+                "--lr-decay-iters",
+                "20000",
+                "--lr",
+                "0.0006",
+                "--min-lr",
+                "0.00006",
+                "--lr-decay-style",
+                "cosine",
+                "--lr-warmup-fraction",
+                "0.01",
+                "--clip-grad",
+                "1.0",
+                "--init-method-std",
+                "0.01",
+                "--optimizer",
+                "adam",
+                // --- 来自 DATA_ARGUMENTS ---
+                "--data-path",
+                "1.0",
+                "/mount/megablocks/my-dataset_text_document",
+                "--vocab-file",
+                "/mount/gpt2-vocab.json",
+                "--merge-file",
+                "/mount/gpt2-merges.txt",
+                "--make-vocab-size-divisible-by",
+                "1024",
+                "--split",
+                "969,30,1",
+                // --- 来自 COMPUTE_ARGUMENTS ---
+                "--fp16",
+                "--DDP-impl",
+                "local",
+                "--moe-expert-model-parallelism",
+                "--no-async-tensor-model-parallel-allreduce",
+                // "--use-flash-attn",
+                // --- 来自 CHECKPOINT_ARGUMENTS ---
+                "--save-interval",
+                "2000",
+                // !! 注意 !!
+                // 你的 EXP_DIR 是 $1，这里必须手动指定一个值
+                // 我先用 "my_experiment_debug" 作为例子
+                "--save",
+                "./my_experiment_debug",
+                // --- 来自 EVALUATION_ARGUMENTS ---
+                "--eval-iters",
+                "100",
+                "--log-interval",
+                "100",
+                "--eval-interval",
+                "1000"
+            ]
+        }
+    ]
+}

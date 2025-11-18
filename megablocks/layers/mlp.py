@@ -34,7 +34,7 @@ def resolve_dtensor(weight):
             return weight.to_local()
     return weight
 
-
+#@weichu: Load DMOE expert weights with TP/EP
 def create_moe_expert_weights(args : Arguments,
                               num_experts : int,
                               ffn_hidden_size : int,
@@ -129,7 +129,7 @@ class MLP(torch.nn.Module):
         if self.gradient_scale is None:
             return w
         return scale_gradient(w, self.gradient_scale)
-#@weichu
+    #@weichu: standard mlp forward
     def forward(self, x):
         w1, w2 = self.scale_grad(self.w1), self.scale_grad(self.w2)
         w1, w2 = resolve_dtensor(w1), resolve_dtensor(w2)
@@ -389,7 +389,7 @@ class SparseMLP(torch.nn.Module):
         x = wp.sdd_nt(x, w1, topo, group)
         activation_fn_out = act_fn(x, self.args.activation_fn)
         return wp.dsd_nn(activation_fn_out, w2, group)
-    #@weichu
+    #@weichu: dmoe mlp forward
     def forward(self, x, topo):
         w1, w2 = self.scale_grad(self.w1), self.scale_grad(self.w2)
         w1, w2 = resolve_dtensor(w1), resolve_dtensor(w2)

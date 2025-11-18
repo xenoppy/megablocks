@@ -249,18 +249,25 @@ class ParallelMLP(torch.nn.Module):
         # output.
         #
         # Compute the mapping of local tokens to experts.
+        # @weichu: x: [sl, bs, hs], expert_weights: [sl * bs, top-k], top_experts: [sl * bs, top-k]
         expert_weights = expert_weights.flatten()
         top_experts = top_experts.flatten()
         with torch.no_grad():
             indices, bin_ids, bins, tokens_per_expert = (
                 self.indices_and_bins(top_experts))
+            # @weichu: indices:  bin_ids:  bins:  tokens_per_expert: [num_experts]
+            # @weichu: indices: [sl * bs], expert indices for each token after sorting
+            # @weichu: bin_ids: [sl * bs], sorted expert indices for each token
+            # @weichu: bins: [num_experts], cumulative sum of tokens per expert
+            # @weichu: tokens_per_expert: [num_experts], number of tokens per expert
 
             # If we're sharding the experts along the hidden dimension
             # multiple devices own parts of the same sets of experts.
             # Replicate the token counts so every device gets the counts.
             repeated_tokens_per_expert = ops.repeat(
                 tokens_per_expert, (mpu.hidden_sharding_degree(self.args),))
-
+            # @weichu: repeated_tokens_per_expert: [num_experts * hidden_sharding_degree], for TP(Weight Parallelism), each device has the same experts, so need to replicate the token counts
+            
             # Pass token count information to the device on which the
             # target expert resides.
             parallel_tokens_per_expert = torch.empty_like(repeated_tokens_per_expert)
